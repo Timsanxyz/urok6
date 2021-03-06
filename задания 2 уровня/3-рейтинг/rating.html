@@ -31,23 +31,36 @@
     -->
 
     <script>
-        let firstStar = document.getElementById('first');
-        let secondStar = document.getElementById('second');
-        let thirdStar = document.getElementById('third');
-        let fourthStar = document.getElementById('fourth');
-        let fifthStar = document.getElementById('fifth');
+        'use strict';
 
-        let goldenClass = 'golden';
+        let stars = document.querySelectorAll("i");
+        //console.log(stars);
 
-        firstStar.addEventListener('mouseover', function() {
-            if (!firstStar.classList.contains('goldenClass')) {
-                firstStar.classList.add(goldenClass);
+        stars.forEach(function (star){
+           star.addEventListener('mouseover', function (event){
+               turnOn(event.target);
+           })
+
+            star.addEventListener('mouseout', function (event){
+                turnOff(event.target);
+            })
+        });
+
+        function turnOn(star){
+            star.classList.add("golden");
+            let previousStar = star.previousElementSibling;
+            if (previousStar !== null && previousStar.tagName == "I"){
+                return turnOn(previousStar);
             }
-        });
+        }
 
-        firstStar.addEventListener('mouseout', function() {
-            firstStar.classList.remove(goldenClass);
-        });
+        function turnOff(star){
+            star.classList.remove("golden");
+            let previousStar = star.previousElementSibling;
+            if (previousStar !== null && previousStar.tagName == "I"){
+                return turnOff(previousStar);
+            }
+        }
     </script>
 </body>
 </html>

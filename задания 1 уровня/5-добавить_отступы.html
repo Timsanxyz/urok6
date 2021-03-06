@@ -25,7 +25,13 @@
     -->
 
     <script>
-        
+        'use strict';
+
+        let elements = document.querySelectorAll("input");
+        console.log(elements);
+        elements.forEach(function (input){
+            input.style.marginBottom = "10px";
+        });
     </script>
 </body>
 
